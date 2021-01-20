@@ -44,8 +44,17 @@ defmodule ViaPort do
   end
 
   def via_port(size) do
-    {:ok, pid} = ViaPort.start_link([size])
-    receive_get(pid)
+    Port.open({:spawn, Enum.join([@command, size], " ")}, [:binary, :exit_status])
+    receive_get()
+  end
+
+  defp receive_get() do
+    receive do
+      {_pid, {:data, _result}} -> receive_get()
+      {_pid, {:exit_status, 0}} -> :ok
+      {_pid, {:exit_status, _}} -> :error
+      _ -> receive_get()
+    end
   end
 
   defp receive_get(pid) do
@@ -56,7 +65,7 @@ defmodule ViaPort do
         {:ok, result}
 
       :not_yet ->
-        Process.sleep(5)
+        Process.sleep(1)
         receive_get(pid)
 
       :error ->

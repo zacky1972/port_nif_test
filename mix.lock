@@ -1,3 +1,4 @@
 %{
   "elixir_make": {:hex, :elixir_make, "0.6.2", "7dffacd77dec4c37b39af867cedaabb0b59f6a871f89722c25b28fcd4bd70530", [:mix], [], "hexpm", "03e49eadda22526a7e5279d53321d1cced6552f344ba4e03e619063de75348d9"},
+  "pelemay_fp": {:hex, :pelemay_fp, "0.1.2", "6ddb0fb8e91c75f490b12ddb69fd3be77d54ce32e8ed31964a0b8e4e4cf05382", [:mix], [], "hexpm", "2d3f1ed87c0a275cd34abd7eadc5fd6bbaecfa75963308fc1d12f8bf40b4fcbe"},
 }

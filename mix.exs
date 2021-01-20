@@ -24,7 +24,8 @@ defmodule PortNifTest.MixProject do
   defp deps do
     [
       {:elixir_make, "~> 0.4", runtime: false},
-      {:pelemay_fp, "~> 0.1"}
+      {:pelemay_fp, "~> 0.1"},
+      {:benchfella, "~> 0.3"}
     ]
   end
 end

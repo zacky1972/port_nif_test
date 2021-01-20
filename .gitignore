@@ -28,3 +28,4 @@ port_nif_test-*.tar
 
 /obj
 /priv
+/bench/snapshots/

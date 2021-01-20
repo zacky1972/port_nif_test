@@ -15,6 +15,8 @@ int main(int argc, const char *argv[])
 		return 1;
 	}
 
+	printf("%llu\n", size);
+
 	int64_t *vec_long = (int64_t *)malloc(sizeof(int64_t) * size);
 	if(__builtin_expect(vec_long == NULL, false)) {
 		return 1;

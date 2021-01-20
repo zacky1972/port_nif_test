@@ -3,7 +3,7 @@ defmodule ViaPort do
 
   @command "#{:code.priv_dir(:port_nif_test)}/via_port"
 
-  def start_link(args \\ [], opts \\ [name: ViaPort]) do
+  def start_link(args \\ [], opts \\ []) do
     GenServer.start_link(__MODULE__, args, opts)
   end
 
@@ -43,7 +43,24 @@ defmodule ViaPort do
     GenServer.call(pid, :get)
   end
 
-  def get() do
-    GenServer.call(ViaPort, :get)
+  def via_port(size) do
+    {:ok, pid} = ViaPort.start_link([size])
+    receive_get(pid)
+  end
+
+  defp receive_get(pid) do
+    ret = ViaPort.get(pid)
+
+    case ret do
+      {:ok, result} ->
+        {:ok, result}
+
+      :not_yet ->
+        Process.sleep(5)
+        receive_get(pid)
+
+      :error ->
+        :error
+    end
   end
 end

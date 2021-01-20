@@ -1,20 +1,22 @@
 defmodule PortNifTest do
   def via_port(size) do
-  	ViaPort.start_link(size)
-  	receive_get()
+    ViaPort.start_link(size)
+    receive_get()
   end
 
   def receive_get() do
     ret = ViaPort.get()
 
     case ret do
-      {:ok, result} -> {:ok, result}
+      {:ok, result} ->
+        {:ok, result}
 
       :not_yet ->
-        Process.sleep(50) 
+        Process.sleep(50)
         receive_get()
 
-      :error -> :error
+      :error ->
+        :error
     end
   end
 end
